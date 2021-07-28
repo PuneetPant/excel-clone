@@ -19,4 +19,4 @@ const HeaderExtra = () => {
     )
 }
 
-export default HeaderExtra;
+export default React.memo(HeaderExtra);

@@ -12,6 +12,7 @@ class HeaderTitle extends React.PureComponent {
     }
 
     componentDidMount() {
+        this.handleInputSize();
         document.title = localStorage.getItem("headerTitle") != null ? localStorage.getItem("headerTitle") : "";
         document.addEventListener('click', this.handleClickOutside, true);
     }
@@ -21,13 +22,9 @@ class HeaderTitle extends React.PureComponent {
     }
 
     handleClickOutside = event => {
-        // console.log(this);
         const domNode = ReactDOM.findDOMNode(this);
-        // console.log('domNode: ', domNode);
 
         if (!domNode || !domNode.contains(event.target)) {
-            // console.log('punee');
-            // console.log(this.inputRef.current.value);
             // save in local storage
             if(localStorage.getItem("headerTitle") === null){
                 localStorage.setItem("headerTitle", this.inputRef.current.value);
@@ -45,12 +42,12 @@ class HeaderTitle extends React.PureComponent {
     }
     // Logic for changing input field
     handleInputSize = (event) => {
-        let getTextWidth = (event.target.value.length) * 8;
+        let getTextWidth = event != null ?  (event.target.value.length) * 8  : (this.state.inputText.length) * 8;
         let getWidth = this.inputRef.current.offsetWidth;
         console.log(getWidth, getTextWidth);
 
         this.setState({
-            inputText: event.target.value
+            inputText: event != null ? event.target.value : this.inputRef.current.value
         })
 
         if (getTextWidth > getWidth) {

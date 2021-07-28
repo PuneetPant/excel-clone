@@ -223,4 +223,4 @@ const HeaderNavbar = () => {
 
 
 
-export default HeaderNavbar;
+export default React.memo(HeaderNavbar);

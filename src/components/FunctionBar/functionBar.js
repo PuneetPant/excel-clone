@@ -1,10 +1,11 @@
-import React, { useState , useRef ,useEffect} from 'react';
+import React, { useState, useRef, useEffect ,useMemo} from 'react';
 import './functionBar.scss';
 const FunctionBar = () => {
     const [zoomSection, setZoomSection] = useState(false);
-    const [zoomValue  ,setZoomValue] = useState(100);
+    const [zoomValue, setZoomValue] = useState(100);
     const [fontSection, setFontSection] = useState(false);
-    const [fontValue , setFontValue] = useState(1);
+    const [fontValue, setFontValue] = useState(1);
+    const [format, setFormat] = useState([]);
     const containerRef = useRef(null);
 
     useEffect(() => {
@@ -16,10 +17,10 @@ const FunctionBar = () => {
     })
     const handleClickOutside = event => {
 
-        if(containerRef.current.contains(event.target)){
+        if (containerRef.current.contains(event.target)) {
             // console.log('inside');
             // setOpen(true);
-        } else{
+        } else {
             // console.log('outside');
             setZoomSection(false);
             setFontSection(false);
@@ -28,7 +29,7 @@ const FunctionBar = () => {
     const zoomValues = [50, 75, 90, 100, 125, 150, 200];
     const zoomDropdown = zoomValues.map((val, index) => {
         return (
-            <div key={index} className="option-section" onClick={()=>{setZoomValue(val)}}>
+            <div key={index} className="option-section" onClick={() => { setZoomValue(val) }}>
                 {`${val}%`}
             </div>
         )
@@ -37,15 +38,25 @@ const FunctionBar = () => {
     const fontValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 18, 24, 36]
     const fontDropdown = fontValues.map((val, index) => {
         return (
-            <div key={index} className="option-section" onClick={()=>{setFontValue(val)}}>
+            <div key={index} className="option-section" onClick={() => { setFontValue(val) }}>
                 {val}
             </div>
         )
     })
-    
+
 
     // const fontValues = []
-
+    const handleFormat = (e) => {
+        console.log(e.target.innerHTML);
+        if (format.includes(e.target.innerHTML)) {
+            let arr = format.filter((item, idx) => {
+                return item != e.target.innerHTML
+            })
+            setFormat([...arr]);
+        } else {
+            setFormat([...format, e.target.innerHTML])
+        }
+    }
 
     return (
         <div className="function-bar" ref={containerRef}>
@@ -77,10 +88,10 @@ const FunctionBar = () => {
             </div>
 
             <div className="action-section">
-                <i className="material-icons icon-formating">format_bold</i>
-                <i className="material-icons icon-formating">format_italic</i>
-                <i className="material-icons icon-formating">strikethrough_s</i>
-                <i className="material-icons icon-formating">format_color_text</i>
+                <i className={`material-icons icon-formating ${format.includes("format_bold") ? "active" : ""}`} onClick={handleFormat}>format_bold</i>
+                <i className={`material-icons icon-formating ${format.includes("format_italic") ? "active" : ""}`} onClick={handleFormat}>format_italic</i>
+                <i className={`material-icons icon-formating ${format.includes("strikethrough_s") ? "active" : ""}`} onClick={handleFormat}>strikethrough_s</i>
+                <i className={`material-icons icon-formating ${format.includes("format_color_text") ? "active" : ""}`} onClick={handleFormat}>format_color_text</i>
             </div>
 
             <div className="action-section">
@@ -99,4 +110,4 @@ const FunctionBar = () => {
         </div>
     )
 }
-export default FunctionBar;
+export default React.memo(FunctionBar);

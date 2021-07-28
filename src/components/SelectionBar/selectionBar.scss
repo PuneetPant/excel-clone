@@ -1,0 +1,32 @@
+@font-face {
+    font-family: "Roboto";
+    src: local("Roboto"), url("/fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+    font-weight: normal;
+}
+@import "../../fontColors.scss";
+.hidden {
+    display: none !important;
+}
+.active {
+    background-color: #e6f4ea !important;
+}
+.selection-bar{
+    display:flex;
+    border-bottom: 1px solid #f1f3f4;
+    input{
+        border:none;
+    }
+    .dropdown-section{
+        // flex-grow:2
+        display: flex;
+        border-right: 1px solid #f1f3f4;
+    }
+    .selected-field{
+        display: flex;
+        flex-grow: 1;
+        input{
+            width:100%;
+        }
+    }
+}
+

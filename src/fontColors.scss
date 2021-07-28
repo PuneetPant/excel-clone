@@ -1,4 +1,16 @@
-$hover-color : #f1f3f4;
-$scrollbar-color : #dadce0;
-$white : #fff;
-$black : black;
+$hover-color: #f1f3f4;
+$scrollbar-color: #dadce0;
+$cell-color: #f8f9fa;
+$cell-text-color: #868a8e;
+$white: #fff;
+$black: black;
+
+.bold {
+    font-weight: 900 !important;
+}
+.italic {
+    font-style: italic !important;
+}
+.strikethrough {
+    text-decoration: line-through !important;
+}

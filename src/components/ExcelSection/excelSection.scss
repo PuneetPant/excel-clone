@@ -1,0 +1,108 @@
+@font-face {
+    font-family: "Roboto";
+    src: local("Roboto"), url("/fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+    font-weight: normal;
+}
+@import "../../fontColors.scss";
+.hidden {
+    display: none !important;
+}
+.active {
+    background-color: #e6f4ea !important;
+}
+// .top-cell-selected {
+//     border-top: none !important;
+// }
+// .bottom-cell-selected {
+//     border-bottom: 1px solid $hover-color !important;
+// }
+// .right-cell-selected {
+//     border-right: 1px solid $hover-color !important;
+// }
+// .left-cell-selected {
+//     border-left: none;
+// }
+
+.excel-section {
+    height: calc(100vh - 113px);
+    // overflow-y: hidden;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    .column-wrapper {
+        display: flex;
+        min-height: 20px;
+        background-color: $cell-color;
+        cursor: pointer;
+        .blank {
+            min-width: 30px;
+            border: 1px solid lightgrey;
+        }
+        .columns {
+            display: flex;
+            font-family: "Roboto";
+            .column-cell {
+                min-width: 80px;
+                border: 1px solid lightgrey;
+                text-align: center;
+                font-size: 10px;
+                padding: 3px;
+                color: $cell-text-color;
+                background-color: $cell-color;
+            }
+        }
+    }
+    .row-input-container {
+        display: flex;
+        .row-wrapper {
+            // display: flex;
+            // /* min-height: 18px; */
+            // flex-direction: column;
+            max-width: 30px;
+            .row-cell {
+                // min-width: 30px;
+                // min-height: 20px;
+                // border: 1px solid lightgrey;
+                // color: #868a8e;
+                // background-color: #f8f9fa;
+                // text-align: center;
+                // font-size: 10px;
+                min-width: 25px;
+                min-height: 14px;
+                border: 1px solid lightgrey;
+                /* color: #868a8e; */
+                background-color: #f8f9fa;
+                text-align: center;
+                font-size: 10px;
+                padding: 3px;
+            }
+        }
+        .input-cell-wrapper {
+            // width:100%;
+            margin-left: 2px;
+            height: inherit;
+            font-family: "Roboto";
+            font-size: 14px;
+            text-align: left;
+            .row {
+                display: flex;
+                height: 22px;
+
+                .cell-box {
+                    /* width: 86px; */
+                    min-height: 15px;
+                    /* padding: 1px; */
+                    border: 1px solid lightgrey;
+                    /* height: 22px; */
+                    /* border: 1px solid black; */
+                    width: 86px;
+                    text-indent: 5px;
+                    padding-top: 3px;
+                }
+                .selected {
+                    border: 1px solid #1065ce !important;
+                }
+            }
+        }
+    }
+}
